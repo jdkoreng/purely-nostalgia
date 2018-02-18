@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic Game</title>
+</head>
+<body>
+    
+        <h1>THE PSYCHIC GAME</h1>
+        <h2>Guess what letter I'm thinking of!</h2>
+
+    <div id="game">
+        <p>Wins: 0</p>
+        <p>Losses: 0</p>
+        <p>Guesses Left: 10</p>
+        <p>Your Guesses so far: </p>
+    </div>
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+
+       ////sets guesses to 10 and wins/losses to 0;
+    
+        var wins = 0;
+        var losses = 0;
+        
+      
+
+
+
+
+        //loops through 10 times but breaks if the user wins
+        for (var guessesTaken=1; guessesTaken < 11; guessesTaken++) {
+
+            // //Gets the computer choice from the array below/////////////////
+            // var compOptions = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"];
+
+            // var compChoice = compOptions[Math.floor(Math.random() * compOptions.length)];
+            // ///////////////////////////////////////////////////////////////
+
+            var lettersTried= "";
+            var numberOfGuesses =10;
+            
+                ////Gets the user choice from the key pressed////////////
+                document.onkeyup = function(event) {
+
+
+                //Gets the computer choice from the array below/////////////////
+                var compOptions = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"];
+
+                var compChoice = compOptions[Math.floor(Math.random() * compOptions.length)];
+                ///////////////////////////////////////////////////////////////
+
+
+                    var playerGuess=event.key;
+                    console.log(playerGuess);
+                    console.log("Comp choice is " + compChoice)
+                    
+                    if (playerGuess === compChoice)  {
+                            wins++;
+                            console.log("Player Wins");
+                            console.log("You have " + wins + " wins");
+                            guessesTaken= 1;
+                            numberOfGuesses=10;
+                            ;
+
+
+                            var winHTML = 
+                            "<p>Player Wins</p>" +
+                            "<p>You Guessed " + playerGuess + "</p>" + 
+                            "<p> You Have " + wins + " Wins</p>" +
+                            "<p> You Have " + losses + " Losses</p>";
+                            "<p> You Tried the following letters: " + lettersTried + "</p>";
+
+                            document.getElementById("game").innerHTML = winHTML;
+
+                            lettersTried= "";
+
+                        
+
+                        }
+                        else {
+                            losses++;
+                            numberOfGuesses--;
+                            console.log("Player Losses");
+                            console.log("You have " + losses + " losses");
+                            console.log("You have " + numberOfGuesses + " Left");
+                            lettersTried =+ playerGuess;
+
+                            var loseHTML = 
+                            "<p>Player Loses</p>" +
+                            "<p>You Guessed " + playerGuess + "</p>" + 
+                            "<p> You Have " + wins + " Wins</p>" +
+                            "<p> You Have " + losses + " Losses</p>" +
+                            "<p> You have " + numberOfGuesses + " Left!</p>" +
+                            "<p> You Tried the following letters: " + lettersTried + "</p>";
+                            
+
+
+                            document.getElementById("game").innerHTML = loseHTML;
+                        }
+
+                
+                
+                
+                }
+
+                       
+                       
+
+                
+
+            }
+
+
+            /////////////////////////////////////////////////////
+
+
+
+
+
+    
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+    
+    
+    </script>
+    
+</body>
+</html>
